@@ -6,7 +6,9 @@ function Character({ character }) {
     const dead = '🔴';
     const unknown = '🔘';    
 
+    
     console.log(character);
+   
     return (
         <div className='character-container'>
 

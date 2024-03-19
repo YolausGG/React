@@ -11,6 +11,7 @@ function App() {
     results: []
   })
   const [numPage, setNumPage] = useState(1)
+
   const [searchCharacter, setSearchCharacter] = useState()
 
   useEffect(() => {
@@ -45,14 +46,19 @@ function App() {
         setDataAPI(data)
         //setCharacters(data.results)
         console.log(data)
+        
       })
       .catch(function (error) {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       })
   }
 
+  
+
   const changeSearchName = () => {
-    loadCharacters(`https://rickandmortyapi.com/api/character/?name=${searchCharacter}`)
+    const busqueda = document.getElementById('inp-search-character')
+    console.log(busqueda);
+    loadCharacters(`https://rickandmortyapi.com/api/character/?name=${busqueda.value}`)
   }
 
   return (
