@@ -5,6 +5,7 @@ function Location({ ubi }) {
 
     console.log(ubi);
    
+    
     return (
         <article className='location-container'>
             <div className='data-location-container'>

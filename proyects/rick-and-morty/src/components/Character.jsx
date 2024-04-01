@@ -8,7 +8,7 @@ function Character({ character }) {
     const dead = '🔴';
     const unknown = '🔘';
 
-    console.log(character);
+    console.log(character);            
 
     return (
         <article className='character-container'>

@@ -5,8 +5,10 @@ import { Link, useParams } from 'react-router-dom'
 function DataLocation() {
 
     const [location, setLocation] = useState({
-
+        residents: []
     })
+
+    const [residents, setResidents] = useState([])
 
     const params = useParams()
 
@@ -23,8 +25,25 @@ function DataLocation() {
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
-
+        loadResidents()
     }, [params.id])
+
+    const loadResidents = () => {
+
+        var resis = []
+        location.residents.map(res => {
+            fetch(res)
+                .then(response => response.json())
+                .then(data => {
+                    resis.push(data)
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    console.log("Hubo un problema con la petición Fetch:" + error.message);
+                })
+        })
+        setResidents(resis)
+    }
 
     return (
         <div>
@@ -33,6 +52,13 @@ function DataLocation() {
                 <label>{location.type}</label>
                 <label>{location.dimension}</label>
             </div>
+
+            <ul>
+                {residents.map(res => (
+                    <li key={res.id}>{res.name}</li>
+                ))
+                }
+            </ul>
         </div>
     )
 }
