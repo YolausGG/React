@@ -1,5 +1,6 @@
 import './styles/app.css'
 import './styles/dataCharacter.css'
+import './styles/dataLocation.css'
 import { Route, Routes } from 'react-router-dom'
 
 import Characters from './pages/Characters'

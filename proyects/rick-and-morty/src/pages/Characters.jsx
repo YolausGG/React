@@ -40,9 +40,10 @@ function Home() {
         fetch(dir)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 setDataAPI(data)
                 //setCharacters(data.results)
-                console.log(data)
+                
             })
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
