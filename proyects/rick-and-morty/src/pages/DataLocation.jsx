@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { render } from 'react-dom'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import CardCharacter from '../components/CardCharacter'
 
 function DataLocation() {
 
@@ -26,7 +25,7 @@ function DataLocation() {
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
-        
+
 
     }, [params.id])
 
@@ -40,7 +39,7 @@ function DataLocation() {
             )
 
             var residentsCorrectos = responses.map(item => (item.status == 'fulfilled' ? item.value : null))
-            
+
             console.log(residentsCorrectos);
             setResidents(residentsCorrectos)
 
@@ -48,33 +47,20 @@ function DataLocation() {
             console.log("Error: ", err);
         }
     };
-    /*   
-
-   location.residents.map(res => {
-           fetch(res)
-               .then(response => response.json())
-               .then(data => {
-                   residents.push(data)
-                   console.log(data);
-               })
-               .catch(function (error) {
-                   console.log("Hubo un problema con la petición Fetch:" + error.message);
-               })
-       })
-   */
 
     return (
-        <div>
-            <h2>{location.name}</h2>
-            <div>
-                <label>{location.type}</label>
-                <label>{location.dimension}</label>
+        <div className='container-data-location'>
+            <div className='container-info-location'>
+                <h2>{location.name}</h2>
+                <p><span className='tipo-info'>Tipo:</span> {location.type == 'unknown' ? 'Desconocido' : location.type}</p>
+                <p><span className='tipo-info'>Dimensión:</span> {location.dimension == 'unknown' ? 'Desconocido' : location.dimension}</p>
             </div>
-            <ul>
+            <h3 className='subtitulo-habitantes'>Habitantes</h3>
+            <section className='container-cards-characters'>
                 {residents?.map(res => (
-                    <li className='li-residents' key={res.id}>{res.name}</li>
+                    <CardCharacter key={res.id} character={res} />
                 ))}
-            </ul>
+            </section>
         </div>
     )
 }

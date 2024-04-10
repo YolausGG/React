@@ -1,3 +1,42 @@
-.li-residents{
-    color: black;
+.container-data-location {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4.5rem;
+    background-color: rgb(39, 43, 51);
+    color: white;
+    min-height: 100vh;
+}
+
+.container-info-location {    
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-cards-characters {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    gap: 5px;
+}
+
+.card-character-contanier {
+    width: 170px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+    background-color: rgb(60, 62, 68);
+}
+
+.img-card-character {
+    width: 150px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.subtitulo-habitantes{
+    font-size: 1.5rem;
+    align-self: center;
+    margin-left: 1rem;
+    text-decoration: underline;
 }

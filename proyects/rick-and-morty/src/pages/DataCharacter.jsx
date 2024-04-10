@@ -5,32 +5,18 @@ import { Link, useParams } from 'react-router-dom'
 
 function DataCharacter() {
 
+    const params = useParams()
+
     const alive = '🟢';
     const dead = '🔴';
     const unknown = '🔘';
 
     const [character, setCharacter] = useState({
-        id: 0,
-        name: "",
-        status: "",
-        species: "",
-        type: "",
-        gender: "",
-        origin: {
-            name: "",
-            url: ""
-        },
-        location: {
-            name: "",
-            url: ""
-        },
-        image: "",
-        episode: [],
-        url: "",
-        created: ""
     })
 
-    const params = useParams()
+    const [idLastLocation, setIdLastLocation] = useState()
+    const [idOrigin, setIdOrigin] = useState()
+    
 
     useEffect(() => {
         fetch(`https://rickandmortyapi.com/api/character/${params.id}`)
@@ -38,7 +24,11 @@ function DataCharacter() {
                 response => response.json())
             .then(data => {
                 setCharacter(data)
-                //setCharacters(data.results)
+
+                const idLastLocation = data.location.url.split('/')
+                const idOrigin = data.origin.url.split('/')
+                setIdLastLocation(idLastLocation[idLastLocation.length-1])
+                setIdOrigin(idOrigin[idOrigin.length-1])
                 console.log(data)
 
             })
@@ -49,21 +39,23 @@ function DataCharacter() {
     }, [params.id])
 
     return (
-        <div className='container-data-character'>
-            <h2>{character.name}</h2>
+        <div className='main-container'>
+
             <div className='container-data'>
+
                 <img className='img-data-character' src={character.image} alt={`Imagne de ${character.name}`} />
                 <div className='container-info-data-character'>
-                    <label>{character.status == 'Alive' ? ' Vivo ' + alive : character.status == 'Dead' ? ' Muerto ' + dead : ' Desconocido ' + unknown}</label>
-                    <label>{character.species}</label>
-                    <label>{character?.type}</label>
-                    <label>Origen:<Link className='style-link' to={`/location/${character.origin.url.slice(-1)}`}> {character.origin.name}</Link> </label>
-                    <label>Ubicación:<Link className='style-link' to={`/location/${character.location.url.slice(-1)}`}> {character.location.name}</Link> </label>
-                    <label>{character?.created.substring(0,10)}</label>
+                    <div className='name-satus-data-character'>
+                        <h2>{character.name}</h2>
+                        {character.status == 'Alive' ? alive : character.status == 'Dead' ? dead : unknown}
+                    </div>
+                    <label>{character.species} {character?.type == '' ? null : ` - ` + character?.type}</label>
+
+                    <label>Origen: {character.origin?.name != 'unknown' ? <Link className='style-link-character' to={`/location/${idOrigin}`}>{character.origin?.name}</Link> : 'Unknown'}</label>
+                    <label>Ubicación: <Link className='style-link-character' to={`/location/${idLastLocation}`}>{character.location?.name}</Link></label>
+
                 </div>
-
             </div>
-
         </div>
     )
 }

@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 function Location({ ubi }) {
 
     console.log(ubi);
-   
-    
-    return (
-        <article className='location-container'>
-            <div className='data-location-container'>
 
-                <Link className='style-link' to={`/location/${ubi.id}`}><strong>{ubi.name}</strong></Link>
-                
-                <label>{ubi.dimension == 'unknown' ? 'Desconocido' : ubi.dimension}</label>
-                <label>{ubi.type}</label>
-                <label>Cantidad de Habitantes: {ubi.residents.length}</label>
-                <label>{ubi.created.substring(0, 10)}</label>
-            </div>
-        </article>
+    return (
+        <Link className='style-link link-scale' to={`/location/${ubi.id}`}>
+            <article className='location-container'>
+                <strong className='name-card'>{ubi.name}</strong>
+
+                <p><span className='tipo-info'>Tipo:</span> {ubi.type}</p>
+
+                <p><span className='tipo-info'>Dimensión:</span> {ubi.dimension == 'unknown' ? 'Desconocida' : ubi.dimension}</p>
+
+                <p><span className='tipo-info'>Cantidad de habitantes:</span> {ubi.residents.length}</p>
+
+            </article>
+        </Link >
     )
 }
+
+export default Location
 
 Location.propTypes = {
     ubi: PropTypes.object.isRequired
 }
-
-export default Location

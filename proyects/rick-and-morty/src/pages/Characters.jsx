@@ -87,7 +87,7 @@ function Home() {
 
             </div>
 
-            <section className="characters-container">
+            <section className="cards-container">
                 {dataAPI.results?.map(character => (
                     <Character key={character.id} character={character} />
                 ))}

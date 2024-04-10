@@ -3,16 +3,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    padding-top: 1rem;
+    padding-top: 4.5rem;
     background-color: rgb(60, 62, 68);
     color: white;
-
+    min-height: 100vh
 }
 
 .container-data {
     display: flex;
     padding: 1rem;
-    border: 2px solid black;
     border-radius: 25px;
     gap: 1rem;
 }
@@ -20,6 +19,7 @@
 .container-info-data-character {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .img-data-character {
@@ -27,12 +27,10 @@
     border-radius: 10px;
 }
 
-.style-link {
-    color: white;
-    transition: 0.2s;
-    text-decoration: none;
+.name-satus-data-character{
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
-.style-link:hover {
-    color: rgb(28, 28, 255);
-}
+
