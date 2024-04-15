@@ -10,11 +10,11 @@ function Location({ ubi }) {
             <article className='location-container'>
                 <strong className='name-card'>{ubi.name}</strong>
 
-                <p><span className='tipo-info'>Tipo:</span> {ubi.type}</p>
+                <p><span className='tipo-info'>Type:</span> {ubi.type}</p>
 
-                <p><span className='tipo-info'>Dimensión:</span> {ubi.dimension == 'unknown' ? 'Desconocida' : ubi.dimension}</p>
+                <p><span className='tipo-info'>Dimension:</span> {ubi.dimension == 'unknown' ? 'Unknown' : ubi.dimension}</p>
 
-                <p><span className='tipo-info'>Cantidad de habitantes:</span> {ubi.residents.length}</p>
+                <p><span className='tipo-info'>Number of residents:</span> {ubi.residents.length}</p>
 
             </article>
         </Link >

@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react"
-
 import { useParams } from 'react-router-dom'
 import CardCharacter from "../components/CardCharacter"
 
 function DataEpisode() {
 
-    const [episode, setEpisode] = useState({
-        espisode: ''
-    })
+    const [episode, setEpisode] = useState({})
     const [characters, setCharacters] = useState([])
-    const [TP, setTP] = useState({
-        temporada: '',
-        episodio: ''
+    const [SE, setSE] = useState({
+        season: '',
+        episode: ''
     })
     const params = useParams()
 
@@ -22,20 +19,15 @@ function DataEpisode() {
             .then(data => {
                 setEpisode(data)
                 console.log(data);
-                var temporada = data.episode.charAt(1) + data.episode.charAt(2)
-                var episodio = data.episode.charAt(4) + data.episode.charAt(5)
-                setTP({ temporada, episodio })
+                var season = data.episode.charAt(1).replace('0', '') + data.episode.charAt(2)
+                var episode = data.episode.charAt(4).replace('0', '') + data.episode.charAt(5)
+                setSE({ season, episode })
                 loadCharacters(data.characters)
             })
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
-
-
-
     }, [params.id])
-
-
 
     const loadCharacters = async (pCharacters) => {
         try {
@@ -58,11 +50,11 @@ function DataEpisode() {
         <div className='container-data-episode main-container'>
             <div className='container-info-episode'>
                 <h2>{episode.name}</h2>
-                <p>Temporada: {TP.temporada.replace('0', '')} Ep. {TP.episodio.replace('0', '')}</p>
+                <p>Season: {SE.season} Ep. {SE.episode}</p>
 
-                <p><span className='tipo-info'>Publicación:</span> {episode.air_date}</p>
+                <p><span className='tipo-info'>Publication:</span> {episode.air_date}</p>
             </div>
-            <h3 className='subtitulo-participantes'>Participantes</h3>
+            <h3 className='subtitulo-participantes'>Characters</h3>
             <section className='container-cards-characters'>
                 {characters?.map(char => (
                     <CardCharacter key={char.id} character={char} />

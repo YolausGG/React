@@ -15,54 +15,43 @@ function Home() {
     }, [])
 
     const prevPage = () => {
-        if (numPage == 1) {
-            /*setNumPage(dataAPI.info.pages)
-            loadCharacters(`https://rickandmortyapi.com/api/character/?page=${dataAPI.info.pages}`)
-            */
-        } else {
+        if (dataAPI.info.prev != null) {
             setNumPage(numPage - 1)
             loadCharacters(dataAPI.info.prev)
         }
     }
     const nextPage = () => {
-        if (numPage == dataAPI.info.pages) {
-            /*setNumPage(1)
-            loadCharacters('https://rickandmortyapi.com/api/character')
-            */
-        } else {
+        if (dataAPI.info.next != null) {
             setNumPage(numPage + 1)
             loadCharacters(dataAPI.info.next)
         }
     }
 
     const loadCharacters = (dir) => {
-
         fetch(dir)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
                 setDataAPI(data)
-                //setCharacters(data.results)
-                
             })
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
     }
 
-    const changeSearchName = () => {
-        const busqueda = document.getElementById('inp-search-character')
+    const changeSearchCharacter = () => {
+        const busquedaName = document.getElementById('inp-search-character-name')
+        const busquedaSpecies = document.getElementById('inp-search-character-species')
+        const busquedaType = document.getElementById('inp-search-character-type')
         const status = document.getElementById('select-status')
 
-        setNumPage(1)
+        console.log(busquedaName.value, busquedaSpecies.value, busquedaType.value, status.value);
 
-        console.log(status.value);
-        if (status.value == 'all') {
-            loadCharacters(`https://rickandmortyapi.com/api/character/?name=${busqueda.value}`)
-        }
-        else {
-            loadCharacters(`https://rickandmortyapi.com/api/character/?name=${busqueda.value}&status=${status.value}`)
-        }
+        setNumPage(1)
+        console.log(`https://rickandmortyapi.com/api/character/?name=${busquedaName.value}&status=${status.value}&species=${busquedaSpecies.value}&type=${busquedaType.value}`);
+
+        loadCharacters(`https://rickandmortyapi.com/api/character/?name=${busquedaName.value}&status=${status.value}&species=${busquedaSpecies.value}&type=${busquedaType.value}`)
+
 
     }
 
@@ -76,15 +65,19 @@ function Home() {
                 <img className='img-adelante' src={flecha} alt="adelante" onClick={nextPage} />
             </div>
             <div className='container-filters'>
-                <input onChange={changeSearchName} id='inp-search-character' type="text" placeholder='Nombre' />
+                <input onChange={changeSearchCharacter} className='inp-search' id='inp-search-character-name' type="text" placeholder='Name' />
+                <input onChange={changeSearchCharacter} className='inp-search' id='inp-search-character-species' type="text" placeholder='Species' />
+                <input onChange={changeSearchCharacter} className='inp-search' id='inp-search-character-type' type="text" placeholder='Type' />
 
-                <select onChange={changeSearchName} name="status" id="select-status">
-                    <option id='op-all' value="all">Todos</option>
-                    <option id='op-alive' value="alive">Vivo</option>
-                    <option id='op-dead' value="dead">Muerto</option>
-                    <option id='op-unknown' value="unknown">Desconocido</option>
-                </select>
-
+                <div className='container-section-select-status'>
+                    <label>Status</label>
+                    <select onChange={changeSearchCharacter} name="status" id="select-status">
+                        <option id='op-all' value="">All</option>
+                        <option id='op-alive' value="alive">Alive</option>
+                        <option id='op-dead' value="dead">Dead</option>
+                        <option id='op-unknown' value="unknown">Unknown</option>
+                    </select>
+                </div>
             </div>
 
             <section className="cards-container">

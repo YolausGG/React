@@ -78,7 +78,7 @@
 .character-container {
   display: flex;
   width: 600px;
-  height: 220px;
+  min-height: 220px;
   background-color: rgb(60, 62, 68);
   border-radius: 5px;
   box-shadow: 0px 0px 5px black;
@@ -86,7 +86,7 @@
 
 .img-character {
   width: 220px;
-  height: 220px;
+  height: 100%;
   border-radius: 5px 0px 0px 5px;
   object-fit: cover;
 }
@@ -114,7 +114,6 @@
 }
 
 .character-name:hover {
-  scale: 1.05;
   text-shadow: 0px 0px 3px white;
 }
 
@@ -146,12 +145,6 @@ span {
   filter: drop-shadow(0px 0px 1px white);
 }
 
-#inp-search-character {
-  height: 2rem;
-  width: 400px;
-  padding: 8px;
-}
-
 .container-filters {
   display: flex;
   flex-wrap: wrap;
@@ -160,10 +153,27 @@ span {
   gap: 20px;
 }
 
+.inp-search {
+  height: 2rem;
+  width: 200px;
+  padding: 8px;
+}
+
 #select-status {
-  width: 120px;
+  width: 200px;
   height: 2rem;
   padding-left: 4px;
+}
+
+.container-section-select-status {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.container-section-select-status label {
+  position: absolute;
+  top: -22px;
+  left: 5px;
 }
 
 .location-container {
@@ -205,6 +215,7 @@ span {
   transition: 0.3s;
   text-decoration: none;
 }
+
 .style-link-character:hover {
   text-decoration: underline;
   text-shadow: 0 0 4px white;

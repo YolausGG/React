@@ -26,7 +26,6 @@ function DataLocation() {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
 
-
     }, [params.id])
 
     const loadResidents = async (pResidents) => {
@@ -52,10 +51,10 @@ function DataLocation() {
         <div className='container-data-location'>
             <div className='container-info-location'>
                 <h2>{location.name}</h2>
-                <p><span className='tipo-info'>Tipo:</span> {location.type == 'unknown' ? 'Desconocido' : location.type}</p>
-                <p><span className='tipo-info'>Dimensión:</span> {location.dimension == 'unknown' ? 'Desconocido' : location.dimension}</p>
+                <p><span className='tipo-info'>Type:</span> {location.type == 'unknown' ? 'Unknown' : location.type}</p>
+                <p><span className='tipo-info'>Dimension:</span> {location.dimension == 'unknown' ? 'Unknown' : location.dimension}</p>
             </div>
-            <h3 className='subtitulo-habitantes'>Habitantes</h3>
+            <h3 className='subtitulo-habitantes'>Residents</h3>
             <section className='container-cards-characters'>
                 {residents?.map(res => (
                     <CardCharacter key={res.id} character={res} />
