@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
-
 function Character({ character }) {
-
     const alive = '🟢';
     const dead = '🔴';
     const unknown = '🔘';
 
     const idLastLocation = character.location.url.split('/')
     const idOrigin = character.origin.url.split('/')
-    console.log(character);
 
     return (
         <article className='character-container'>
@@ -41,7 +38,6 @@ function Character({ character }) {
                     </p>
                 </div> : null}
             </div>
-
         </article >
     )
 }
@@ -51,6 +47,3 @@ Character.propTypes = {
 }
 
 export default Character
-
-
-

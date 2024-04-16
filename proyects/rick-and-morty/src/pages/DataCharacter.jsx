@@ -1,10 +1,8 @@
-
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 function DataCharacter() {
-
     const params = useParams()
 
     const alive = '🟢';
@@ -23,52 +21,40 @@ function DataCharacter() {
                 response => response.json())
             .then(data => {
                 setCharacter(data)
-
                 const idLastLocation = data.location.url.split('/')
                 const idOrigin = data.origin.url.split('/')
                 setIdLastLocation(idLastLocation[idLastLocation.length - 1])
                 setIdOrigin(idOrigin[idOrigin.length - 1])
                 loadEpisodes(data.episode)
-
-                console.log(data)
-
             })
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
-
     }, [params.id])
 
     const loadEpisodes = async (pEpisodes) => {
         try {
-
             const responses = await Promise.allSettled(
                 pEpisodes.map(async epi => {
                     return fetch(epi)
                         .then(response => response.json())
                 })
             )
-
             const episodesFilter = responses.map(res => (res.status == 'fulfilled' ? res.value : null))
-            console.log(episodesFilter);
             setEpisodes(episodesFilter)
         } catch (error) {
             console.log("Error: ", error);
         }
-
     }
 
     const obtenerId = (pString) => {
-        console.log(pString);
         const arrayLink = pString.split('/')
         return arrayLink[arrayLink.length - 1]
     }
 
     return (
         <div className='main-container'>
-
             <div className='container-data'>
-
                 <img className='img-data-character' src={character.image} alt={`Imagne de ${character.name}`} title={`image of ${character.name}`}/>
                 <div className='container-info-data-character'>
                     <div className='name-satus-data-character'>
@@ -100,12 +86,10 @@ function DataCharacter() {
                                 </article>
                             </Link>
                         )
-                    }
-                    )
-
+                    })
                 }
             </section>
-        </div >
+        </div>
     )
 }
 

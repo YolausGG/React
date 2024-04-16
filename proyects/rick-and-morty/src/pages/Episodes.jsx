@@ -31,7 +31,6 @@ function Episodes() {
     fetch(dir)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setDataAPI(data)
       })
   }
@@ -41,7 +40,6 @@ function Episodes() {
     const busquedaEpisode = document.getElementById('inp-search-episode-episode')
     setNumPage(1)
     loadEpisodes(`https://rickandmortyapi.com/api/episode/?name=${busquedaName.value}&episode=${busquedaEpisode.value}`)
-
   }
   return (
     <div className="main-container">

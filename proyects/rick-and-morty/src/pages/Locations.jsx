@@ -3,7 +3,6 @@ import Location from "../components/Location"
 import flecha from '../images/flecha.webp'
 
 function Locations() {
-
   const [dataAPI, setDataAPI] = useState({
     info: {},
     results: []
@@ -30,7 +29,6 @@ function Locations() {
     fetch(dir)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setDataAPI(data)
       })
   }
@@ -41,7 +39,6 @@ function Locations() {
     const busquedaDimension = document.getElementById('inp-search-location-dimension')
     setNumPage(1)
     loadLocations(`https://rickandmortyapi.com/api/location/?name=${busquedaName.value}&type=${busquedaType.value}&dimension=${busquedaDimension.value}`)
-
   }
 
   return (
@@ -62,7 +59,6 @@ function Locations() {
           <Location key={ubi.id} ubi={ubi} />
         ))}
       </section>
-
     </div>
   )
 }

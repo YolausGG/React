@@ -3,13 +3,10 @@ import { useParams } from 'react-router-dom'
 import CardCharacter from '../components/CardCharacter'
 
 function DataLocation() {
-
     const [location, setLocation] = useState({
         residents: []
     })
-
     const [residents, setResidents] = useState()
-
     const params = useParams()
 
     useEffect(() => {
@@ -18,14 +15,11 @@ function DataLocation() {
                 response => response.json())
             .then(data => {
                 setLocation(data)
-                //setCharacters(data.results)
-                console.log(data)
                 loadResidents(data.residents)
             })
             .catch(function (error) {
                 console.log("Hubo un problema con la petición Fetch:" + error.message);
             })
-
     }, [params.id])
 
     const loadResidents = async (pResidents) => {
@@ -38,10 +32,7 @@ function DataLocation() {
             )
 
             var residentsCorrectos = responses.map(item => (item.status == 'fulfilled' ? item.value : null))
-
-            console.log(residentsCorrectos);
             setResidents(residentsCorrectos)
-
         } catch (err) {
             console.log("Error: ", err);
         }
@@ -63,6 +54,5 @@ function DataLocation() {
         </div>
     )
 }
-
 
 export default DataLocation

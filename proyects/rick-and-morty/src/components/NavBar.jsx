@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 function NavBar() {
-
     const openCloseNavBar = () => {
 
         const toggleBtnIcon = document.getElementById('icon-menu-burger')
@@ -12,7 +11,6 @@ function NavBar() {
 
         toggleBtnIcon.classList = isOpen ? 'fi fi-br-cross' : 'fi fi-br-menu-burger'
     }
-
     return (
         <nav className='container-navBar'>
             <ul className='nav-list'>

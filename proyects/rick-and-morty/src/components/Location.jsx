@@ -2,9 +2,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 function Location({ ubi }) {
-
-    console.log(ubi);
-
     return (
         <Link className='style-link link-scale' to={`/location/${ubi.id}`}>
             <article className='location-container'>

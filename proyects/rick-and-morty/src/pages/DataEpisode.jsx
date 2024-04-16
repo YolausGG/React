@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import CardCharacter from "../components/CardCharacter"
 
 function DataEpisode() {
-
     const [episode, setEpisode] = useState({})
     const [characters, setCharacters] = useState([])
     const [SE, setSE] = useState({
@@ -18,7 +17,6 @@ function DataEpisode() {
             .then(response => response.json())
             .then(data => {
                 setEpisode(data)
-                console.log(data);
                 var season = data.episode.charAt(1).replace('0', '') + data.episode.charAt(2)
                 var episode = data.episode.charAt(4).replace('0', '') + data.episode.charAt(5)
                 setSE({ season, episode })
@@ -37,8 +35,6 @@ function DataEpisode() {
                         .then(response => response.json())
                 })
             )
-            console.log(responses);
-
             const charactersFilter = responses.map(res => (res.status == 'fulfilled' ? res.value : null))
             setCharacters(charactersFilter)
         } catch (err) {
@@ -51,7 +47,6 @@ function DataEpisode() {
             <div className='container-info-episode'>
                 <h2>{episode.name}</h2>
                 <p>Season: {SE.season} Ep. {SE.episode}</p>
-
                 <p><span className='tipo-info'>Publication:</span> {episode.air_date}</p>
             </div>
             <h3 className='subtitulo-participantes'>Characters</h3>

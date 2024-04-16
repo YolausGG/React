@@ -16,7 +16,7 @@ import DataEpisode from './pages/DataEpisode'
 function App() {
   return (
     <>
-      <NavBar />
+      <NavBar/>
       <Routes>
         <Route path='/characters' element={<Characters />} />
         <Route path='/locations' element={<Locations />} />

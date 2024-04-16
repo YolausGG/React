@@ -3,7 +3,6 @@ import Character from '../components/Character'
 import flecha from '../images/flecha.webp'
 
 function Home() {
-    //const [characters, setCharacters] = useState([])
     const [dataAPI, setDataAPI] = useState({
         info: {},
         results: []
@@ -31,7 +30,6 @@ function Home() {
         fetch(dir)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setDataAPI(data)
             })
             .catch(function (error) {
@@ -45,20 +43,13 @@ function Home() {
         const busquedaType = document.getElementById('inp-search-character-type')
         const status = document.getElementById('select-status')
 
-        console.log(busquedaName.value, busquedaSpecies.value, busquedaType.value, status.value);
-
         setNumPage(1)
-        console.log(`https://rickandmortyapi.com/api/character/?name=${busquedaName.value}&status=${status.value}&species=${busquedaSpecies.value}&type=${busquedaType.value}`);
-
         loadCharacters(`https://rickandmortyapi.com/api/character/?name=${busquedaName.value}&status=${status.value}&species=${busquedaSpecies.value}&type=${busquedaType.value}`)
-
-
     }
 
     return (
         <div className="main-container">
             <h1>Rick and Morty API</h1>
-
             <div className='nav-container container-pagination'>
                 <img className='img-atras' src={flecha} alt="atras" onClick={prevPage} />
                 <strong className='num-page'>{numPage}</strong>
@@ -77,13 +68,11 @@ function Home() {
                     <option id='op-unknown' value="unknown">Unknown</option>
                 </select>
             </div>
-
             <section className="cards-container">
                 {dataAPI.results?.map(character => (
                     <Character key={character.id} character={character} />
                 ))}
             </section>
-
         </div>
     )
 }
