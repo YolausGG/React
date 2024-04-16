@@ -59,7 +59,7 @@ function Home() {
         <div className="main-container">
             <h1>Rick and Morty API</h1>
 
-            <div className='nav-container'>
+            <div className='nav-container container-pagination'>
                 <img className='img-atras' src={flecha} alt="atras" onClick={prevPage} />
                 <strong className='num-page'>{numPage}</strong>
                 <img className='img-adelante' src={flecha} alt="adelante" onClick={nextPage} />
@@ -69,15 +69,13 @@ function Home() {
                 <input onChange={changeSearchCharacter} className='inp-search' id='inp-search-character-species' type="text" placeholder='Species' />
                 <input onChange={changeSearchCharacter} className='inp-search' id='inp-search-character-type' type="text" placeholder='Type' />
 
-                <div className='container-section-select-status'>
-                    <label>Status</label>
-                    <select onChange={changeSearchCharacter} name="status" id="select-status">
-                        <option id='op-all' value="">All</option>
-                        <option id='op-alive' value="alive">Alive</option>
-                        <option id='op-dead' value="dead">Dead</option>
-                        <option id='op-unknown' value="unknown">Unknown</option>
-                    </select>
-                </div>
+                <select required onChange={changeSearchCharacter} defaultValue={""} name="status" id="select-status">
+                    <option value="" disabled hidden>Status</option>
+                    <option id='op-all' value="">All</option>
+                    <option id='op-alive' value="alive">Alive</option>
+                    <option id='op-dead' value="dead">Dead</option>
+                    <option id='op-unknown' value="unknown">Unknown</option>
+                </select>
             </div>
 
             <section className="cards-container">

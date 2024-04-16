@@ -47,7 +47,7 @@ function Locations() {
   return (
     <div className="main-container">
       <h2>Locations</h2>
-      <div className='nav-container'>
+      <div className='nav-container container-pagination'>
         <img className='img-atras' src={flecha} alt="atras" onClick={prevPage} />
         <strong className='num-page'>{numPage}</strong>
         <img className='img-adelante' src={flecha} alt="adelante" onClick={nextPage} />
