@@ -4,8 +4,9 @@ import { Square } from './components/Square.jsx'
 import { TURNS } from './contstants.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { checkWinner, checkEndGame } from './logic/board.js'
-import { saveGameToStorage, resetGameToStorage } from './logic/storage/index.js'
+import { saveGameToStorage, resetGameToStorage, limpiarLocalStorage } from './logic/storage/index.js'
 import { ListWinners } from './components/ListWinners.jsx'
+
 function App() {
 
   const [board, setBoard] = useState(() => {
@@ -29,8 +30,7 @@ function App() {
   })
   const updateListWinners = (winner) => {
 
-    const newListWinners = [...listWinners]
-    newListWinners.push(`Ganador: ${winner}`)
+    const newListWinners = [...listWinners, `Ganador: ${winner}`]
 
     window.localStorage.setItem('listWinners', JSON.stringify(newListWinners))
     setListWinners(newListWinners)
@@ -66,7 +66,7 @@ function App() {
 
   useEffect(() => {
 
-  }, [winner])
+  }, [listWinners])
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
@@ -75,10 +75,15 @@ function App() {
 
     resetGameToStorage()
   }
-  return (
-    <div className='container'>
 
-      <ListWinners listWinners={listWinners} />
+  const clearLocalStorage = () => {
+    limpiarLocalStorage()
+    setListWinners([])
+    setBoard(Array(9).fill(null))
+
+  }
+  return (
+    <div className='container'>    
 
       <div className='board'>
 
@@ -106,6 +111,9 @@ function App() {
 
         <WinnerModal winner={winner} resetGame={resetGame} />
       </div>
+      <ListWinners listWinners={listWinners} />
+
+      <button className='btn-clear-local-storage' onClick={clearLocalStorage}>Limpiar Datos <br /><small>(Local Storage)</small></button>
     </div>
   )
 }

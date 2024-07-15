@@ -22,14 +22,5 @@ export const checkEndGame = (checkBoard) => {
 
   return checkBoard.every((square) => square != null)
 
-  /* let count = 0;
-   for(let i of checkBoard){
-     if(i != null){
-       count++
-     }
-   }
-   if(count > 8){
-     return true
-   }*/
 }
 
