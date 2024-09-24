@@ -87,7 +87,7 @@ function App() {
 
       <div className='board'>
 
-        <h1>Tres en raya</h1>
+        <h1>Tres en línea</h1>
         <button onClick={resetGame}>Empezar de Nuevo</button>
         <section className='game'>
           {
